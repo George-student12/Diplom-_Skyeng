@@ -1,6 +1,5 @@
 import allure
 from Page.ui_page import MainPage
-from conftest import driver
 
 
 @allure.feature("Поиск")
@@ -58,7 +57,8 @@ def test_remove_from_cart(driver):
 
     cart_page = results_page.open_cart()
     cart_page.is_loaded()
-    assert cart_page.has_items(), "Товар не добавился в корзину перед удалением"
+    assert cart_page.has_items(),\
+        "Товар не добавился в корзину перед удалением"
 
     cart_page.remove_first_item()
     assert cart_page.is_empty(), "Корзина не пуста после удаления товара"
