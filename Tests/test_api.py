@@ -23,8 +23,21 @@ def test_add_to_cart():
 @allure.title("Изменение количества товара в корзине")
 @allure.severity(allure.severity_level.NORMAL)
 def test_changes_quantity():
+    url = f"{BASE_URL}/v1/cart/product"
+    payload = {
+    "id": 3018590
+    }
+
+    with allure.step(f"POST {url} с товаром {payload['id']}"):
+        response = requests.post(url, headers=HEADERS, json=payload)
+
+        assert response.status_code == 200
+
     url = f"{BASE_URL}/v1/cart"
-    payload = {"id": 258009511, "quantity": 10}
+    payload = {
+    "id": 259333072,
+    "quantity": 10
+    }
 
     with allure.step(f"PUT {url} с quantity={payload['quantity']}"):
         response = requests.put(url, headers=HEADERS, json=payload)

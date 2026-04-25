@@ -23,7 +23,7 @@ def test_search_no_results(driver):
     main_page.open()
     results_page = main_page.search("xgkghkghkфывапролджэячсмитьбю")
     results_page.wait_for_results()
-    assert results_page.is_empty_result(), "Ожидалась пустая выдача"
+    assert results_page.is_no_results_found(), "Ожидалась пустая выдача"
 
 
 @allure.feature("Корзина")
