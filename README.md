@@ -58,3 +58,5 @@ pytest --alluredir=allure-results -v
 allure serve allure-results
 
 ## 6. Ссылка на дипломный проект по читай-городу
+
+Ссылка: https://4343.yonote.ru/doc/diplomnaya-rabota-po-avtomatizirovannomu-testirovaniyu-pt1pc1mXR9
