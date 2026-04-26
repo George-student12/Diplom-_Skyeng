@@ -1,8 +1,12 @@
 import allure
+import pytest
 import requests
 from conftest import BASE_URL, HEADERS
 
 
+@pytest.mark.regression
+@pytest.mark.cart
+@pytest.mark.api
 @allure.feature("Корзина API")
 @allure.story("Добавление товара")
 @allure.title("Добавление товара в корзину через API")
@@ -18,6 +22,9 @@ def test_add_to_cart():
         assert response.status_code == 200
 
 
+@pytest.mark.regression
+@pytest.mark.cart
+@pytest.mark.api
 @allure.feature("Корзина API")
 @allure.story("Изменение количества")
 @allure.title("Изменение количества товара в корзине")
@@ -25,7 +32,7 @@ def test_add_to_cart():
 def test_changes_quantity():
     url = f"{BASE_URL}/v1/cart/product"
     payload = {
-    "id": 3018590
+        "id": 3018590
     }
 
     with allure.step(f"POST {url} с товаром {payload['id']}"):
@@ -35,8 +42,8 @@ def test_changes_quantity():
 
     url = f"{BASE_URL}/v1/cart"
     payload = {
-    "id": 259333072,
-    "quantity": 10
+        "id": 259333072,
+        "quantity": 10
     }
 
     with allure.step(f"PUT {url} с quantity={payload['quantity']}"):
@@ -46,6 +53,9 @@ def test_changes_quantity():
         assert response.status_code == 200
 
 
+@pytest.mark.regression
+@pytest.mark.cart
+@pytest.mark.api
 @allure.feature("Корзина API")
 @allure.story("Получение информации о корзине")
 @allure.title("Получение краткой информации о корзине")
@@ -66,6 +76,9 @@ def test_search_products_api():
         assert response.status_code == 200
 
 
+@pytest.mark.regression
+@pytest.mark.cart
+@pytest.mark.api
 @allure.feature("Корзина API")
 @allure.story("Обработка ошибок")
 @allure.title("Некорректный метод POST (ожидается 405)")
@@ -81,6 +94,9 @@ def test_failed_status_code():
         assert response.status_code == 405
 
 
+@pytest.mark.regression
+@pytest.mark.cart
+@pytest.mark.api
 @allure.feature("Корзина API")
 @allure.story("Обработка ошибок")
 @allure.title("Запрос несуществующей версии v3 (ожидается 404)")

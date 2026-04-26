@@ -1,0 +1,6 @@
+selenium~=4.43.0
+requests~=2.33.1
+pytest~=9.0.3
+dotenv~=0.9.9
+python-dotenv~=1.2.2
+allure-python-commons~=2.15.3

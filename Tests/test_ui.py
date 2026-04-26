@@ -1,11 +1,15 @@
 import allure
+import pytest
 from Page.ui_page import MainPage
 
 
+@pytest.mark.smoke
+@pytest.mark.search
+@pytest.mark.ui
 @allure.feature("Поиск")
 @allure.story("Поиск товаров")
 @allure.title("Поиск существующего товара")
-@allure.severity(allure.severity_level.NORMAL)
+@allure.severity(allure.severity_level.CRITICAL)
 def test_search_products(driver):
     main_page = MainPage(driver)
     main_page.open()
@@ -14,6 +18,9 @@ def test_search_products(driver):
     assert results_page.has_products(), "Товары не найдены"
 
 
+@pytest.mark.regression
+@pytest.mark.search
+@pytest.mark.ui
 @allure.feature("Поиск")
 @allure.story("Поиск товаров")
 @allure.title("Поиск несуществующего товара")
@@ -26,6 +33,9 @@ def test_search_no_results(driver):
     assert results_page.is_no_results_found(), "Ожидалась пустая выдача"
 
 
+@pytest.mark.smoke
+@pytest.mark.cart
+@pytest.mark.ui
 @allure.feature("Корзина")
 @allure.story("Добавление товара")
 @allure.title("Добавление товара в корзину со страницы поиска")
@@ -43,6 +53,9 @@ def test_add_to_cart(driver):
     assert cart_page.has_items(), "В корзине нет товаров"
 
 
+@pytest.mark.smoke
+@pytest.mark.cart
+@pytest.mark.ui
 @allure.feature("Корзина")
 @allure.story("Удаление товара")
 @allure.title("Удаление товара из корзины")
@@ -57,13 +70,16 @@ def test_remove_from_cart(driver):
 
     cart_page = results_page.open_cart()
     cart_page.is_loaded()
-    assert cart_page.has_items(),\
+    assert cart_page.has_items(), \
         "Товар не добавился в корзину перед удалением"
 
     cart_page.remove_first_item()
     assert cart_page.is_empty(), "Корзина не пуста после удаления товара"
 
 
+@pytest.mark.regression
+@pytest.mark.search
+@pytest.mark.ui
 @allure.feature("Каталог")
 @allure.story("Навигация по категориям")
 @allure.title("Переход в подкатегорию 'Как стать успешным'")

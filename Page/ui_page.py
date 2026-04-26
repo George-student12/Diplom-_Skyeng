@@ -129,19 +129,33 @@ class SearchResultsPage:
         return self
 
     def is_no_results_found(self):
-        """Возвращает True, если отображается любой из признаков отсутствия товаров."""
+        """Возвращает True, если отображается
+         любой из признаков отсутствия товаров."""
         try:
             # Проверяем заголовок h1
-            self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "h1.search-title__head")))
-            if "не принес результатов" in self.driver.find_element(By.CSS_SELECTOR, "h1.search-title__head").text:
+            (self.
+             wait.until(EC.
+                        presence_of_element_located((By.CSS_SELECTOR,
+                                                     "h1.search-title__head"
+                                                     ))))
+            if ("не принес результатов" in self.
+                    driver.find_element(By.CSS_SELECTOR,
+                                        "h1.search-title__head").text):
                 return True
         except TimeoutException:
             pass
 
         try:
             # Проверяем заглушку h4
-            self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h4.catalog-stub__title")))
-            if "Похоже, у нас такого нет" in self.driver.find_element(By.CSS_SELECTOR, "h4.catalog-stub__title").text:
+            (self.
+             wait.until(EC.
+                        visibility_of_element_located((By.
+                                                       CSS_SELECTOR,
+                                                       "h4.catalog-stub__title"
+                                                       ))))
+            if ("Похоже, у нас такого нет" in self.
+                    driver.find_element(By.CSS_SELECTOR,
+                                        "h4.catalog-stub__title").text):
                 return True
         except TimeoutException:
             pass
